@@ -1,0 +1,56 @@
+<!-- <p>{{this.data}}</p>
+
+<p *ngFor="let x of this.data">
+    <span>{{x.id}}</span>
+</p>
+
+<app-pagination [currentPage]="currentPage" [limit]="20" [total]="500" (changePage)="changePage($event)"></app-pagination> -->
+
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-3 mb-3" *ngFor="let product of products">
+            <div class="card mb-3" stye="height:250px">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img [src]="product.url"
+                             class="img-fluid" 
+                             style="height:150px;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger">{{product.title}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+        <div class="form-inline float-left mr-1">
+            <select class="form-control" 
+                [value]="productsPerPage" 
+                (change)="changePageSize($event)">  
+                <option value="4">4 Per Page</option>
+                <option value="8">8 Per Page</option>
+                <option value="12">12 Per Page</option>
+                <option value="16">16 Per Page</option>
+                <option value="20">20 Per Page</option>
+            </select>
+        </div>
+
+        <div class="btn-group float-right">
+            <button class="btn btn-outline-primary"
+                    *ngFor="let page of pageNumbers"
+                    [class.active]="page === selectedPage"
+                    (click)="changePage(page)">{{ page }}</button>
+          </div>
+          
+          <!-- Add this input for changing the page size -->
+          <input type="number" [(ngModel)]="productsPerPage" (change)="changePageSize($event)" min="1">
+
+    </div>
+</div>
